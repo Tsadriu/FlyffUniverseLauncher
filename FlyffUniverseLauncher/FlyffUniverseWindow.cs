@@ -1,13 +1,4 @@
 ﻿using Microsoft.Web.WebView2.Core;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using TsadriuUtilities;
 
 namespace FlyffUniverseLauncher
@@ -21,11 +12,10 @@ namespace FlyffUniverseLauncher
             height = height.ClampValue(600, Screen.FromControl(this).Bounds.Height);
             InitializeComponent();
             Size = new Size(width, height);
-            Text += " - " + windowName.LetterUpperCase();
+            Text += $"{Program.GetVersionAsString()} {windowName.LetterUpperCase()}";
             user = windowName;
             Resize += new EventHandler(ResizeWebView);
             Location = Program.launcher.Location;
-            
         }
 
         private void ResizeWebView(object? sender, EventArgs e)
@@ -40,6 +30,7 @@ namespace FlyffUniverseLauncher
             await webView.EnsureCoreWebView2Async(webViewEnvironment);
             webView.Source = new Uri("https://universe.flyff.com/play");
             webView.CoreWebView2.Settings.UserAgent = "Chrome";
+            launchButton.Hide();
         }
     }
 }

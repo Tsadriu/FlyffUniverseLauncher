@@ -48,9 +48,9 @@ namespace FlyffUniverseLauncher
             this.webView.AllowExternalDrop = false;
             this.webView.CreationProperties = null;
             this.webView.DefaultBackgroundColor = System.Drawing.Color.DarkGray;
-            this.webView.Location = new System.Drawing.Point(-1, 26);
+            this.webView.Location = new System.Drawing.Point(-1, -1);
             this.webView.Name = "webView";
-            this.webView.Size = new System.Drawing.Size(1266, 656);
+            this.webView.Size = new System.Drawing.Size(1266, 683);
             this.webView.TabIndex = 1;
             this.webView.ZoomFactor = 1D;
             // 
@@ -73,7 +73,7 @@ namespace FlyffUniverseLauncher
             this.Controls.Add(this.launchButton);
             this.Controls.Add(this.webView);
             this.Name = "FlyffUniverseWindow";
-            this.Text = "FlyffUniverseWindow";
+            this.Text = "Flyff Universe Launcher -";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             ((System.ComponentModel.ISupportInitialize)(this.webView)).EndInit();
             this.ResumeLayout(false);

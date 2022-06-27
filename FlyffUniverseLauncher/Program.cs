@@ -6,7 +6,7 @@ namespace FlyffUniverseLauncher
     internal static class Program
     {
         public static FlyffUniverseLauncher launcher;
-        private static VersionEnum currentVersion = VersionEnum.V1_0_0;
+        private static VersionEnum currentVersion = VersionEnum.V1_1_0;
 
         /// <summary>
         ///  The main entry point for the application.
