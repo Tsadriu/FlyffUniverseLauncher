@@ -53,6 +53,7 @@ namespace FlyffUniverseLauncher
             this.webView.Size = new System.Drawing.Size(1266, 683);
             this.webView.TabIndex = 1;
             this.webView.ZoomFactor = 1D;
+            this.webView.KeyDown += new System.Windows.Forms.KeyEventHandler(this.webView_KeyDown);
             // 
             // launchButton
             // 

@@ -32,5 +32,23 @@ namespace FlyffUniverseLauncher
             webView.CoreWebView2.Settings.UserAgent = "Chrome";
             launchButton.Hide();
         }
+
+        private void webView_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode.ToString() == "F11")
+            {
+                if (WindowState == FormWindowState.Maximized)
+                {
+                    FormBorderStyle = FormBorderStyle.Sizable;
+                    WindowState = FormWindowState.Normal;
+                    CenterToScreen();
+                }
+                else
+                {
+                    FormBorderStyle = FormBorderStyle.None;
+                    WindowState = FormWindowState.Maximized;
+                }
+            }
+        }
     }
 }
