@@ -34,7 +34,7 @@ namespace FlyffUniverseLauncher
             this.components = new System.ComponentModel.Container();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.webView = new Microsoft.Web.WebView2.WinForms.WebView2();
-            this.button1 = new System.Windows.Forms.Button();
+            this.launchButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.webView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -48,31 +48,33 @@ namespace FlyffUniverseLauncher
             this.webView.AllowExternalDrop = false;
             this.webView.CreationProperties = null;
             this.webView.DefaultBackgroundColor = System.Drawing.Color.DarkGray;
-            this.webView.Location = new System.Drawing.Point(7, 37);
+            this.webView.Location = new System.Drawing.Point(-1, 26);
             this.webView.Name = "webView";
-            this.webView.Size = new System.Drawing.Size(781, 401);
+            this.webView.Size = new System.Drawing.Size(1266, 656);
             this.webView.TabIndex = 1;
             this.webView.ZoomFactor = 1D;
             // 
-            // button1
+            // launchButton
             // 
-            this.button1.Location = new System.Drawing.Point(23, 10);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.launchButton.Location = new System.Drawing.Point(-1, -1);
+            this.launchButton.Name = "launchButton";
+            this.launchButton.Size = new System.Drawing.Size(90, 21);
+            this.launchButton.TabIndex = 2;
+            this.launchButton.Text = "Launch game";
+            this.launchButton.UseVisualStyleBackColor = true;
+            this.launchButton.Click += new System.EventHandler(this.button1_Click);
             // 
             // FlyffUniverseWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.button1);
+            this.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.ClientSize = new System.Drawing.Size(1264, 681);
+            this.Controls.Add(this.launchButton);
             this.Controls.Add(this.webView);
             this.Name = "FlyffUniverseWindow";
             this.Text = "FlyffUniverseWindow";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             ((System.ComponentModel.ISupportInitialize)(this.webView)).EndInit();
             this.ResumeLayout(false);
 
@@ -82,6 +84,6 @@ namespace FlyffUniverseLauncher
 
         private ContextMenuStrip contextMenuStrip1;
         private Microsoft.Web.WebView2.WinForms.WebView2 webView;
-        private Button button1;
+        private Button launchButton;
     }
 }
