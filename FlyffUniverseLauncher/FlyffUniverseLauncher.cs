@@ -95,6 +95,9 @@ namespace FlyffUniverseLauncher
             {
                 widthInput.Text = widthInput.Text.IsEmpty() ? defaultWidth.ToString() : widthInput.Text;
                 heightInput.Text = heightInput.Text.IsEmpty() ? defaultHeight.ToString() : heightInput.Text;
+                var userIndex = usersInFile.GetColumn("Profile").ColumnData.FindIndex(x => x.Equals(user));
+                usersInFile.GetColumn("Width").ColumnData[userIndex] = widthInput.Text;
+                usersInFile.GetColumn("Height").ColumnData[userIndex] = heightInput.Text;
 
                 File.WriteAllLines(ProfilesFile, usersInFile.TableToCsv());
             }

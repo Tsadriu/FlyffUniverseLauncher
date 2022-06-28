@@ -12,6 +12,7 @@ namespace FlyffUniverseLauncher.Enums
         V1_1_0,
         V1_2_0,
         V1_3_0,
-        V1_3_1
+        V1_3_1,
+        V1_3_2
     }
 }
