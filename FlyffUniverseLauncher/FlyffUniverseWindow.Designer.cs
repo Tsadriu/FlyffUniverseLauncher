@@ -32,9 +32,9 @@ namespace FlyffUniverseLauncher
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FlyffUniverseWindow));
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.webView = new Microsoft.Web.WebView2.WinForms.WebView2();
-            this.launchButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.webView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -55,27 +55,16 @@ namespace FlyffUniverseLauncher
             this.webView.ZoomFactor = 1D;
             this.webView.KeyDown += new System.Windows.Forms.KeyEventHandler(this.webView_KeyDown);
             // 
-            // launchButton
-            // 
-            this.launchButton.Location = new System.Drawing.Point(-1, -1);
-            this.launchButton.Name = "launchButton";
-            this.launchButton.Size = new System.Drawing.Size(90, 21);
-            this.launchButton.TabIndex = 2;
-            this.launchButton.Text = "Launch game";
-            this.launchButton.UseVisualStyleBackColor = true;
-            this.launchButton.Click += new System.EventHandler(this.button1_Click);
-            // 
             // FlyffUniverseWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.InactiveCaption;
             this.ClientSize = new System.Drawing.Size(1264, 681);
-            this.Controls.Add(this.launchButton);
             this.Controls.Add(this.webView);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FlyffUniverseWindow";
-            this.Text = "Flyff Universe Launcher -";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Text = "Flyff Universe Launcher - ";
             ((System.ComponentModel.ISupportInitialize)(this.webView)).EndInit();
             this.ResumeLayout(false);
 
@@ -85,6 +74,5 @@ namespace FlyffUniverseLauncher
 
         private ContextMenuStrip contextMenuStrip1;
         private Microsoft.Web.WebView2.WinForms.WebView2 webView;
-        private Button launchButton;
     }
 }

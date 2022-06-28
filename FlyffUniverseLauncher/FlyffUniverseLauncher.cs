@@ -6,8 +6,10 @@ namespace FlyffUniverseLauncher
     public partial class FlyffUniverseLauncher : Form
     {
         public static readonly string CurrentDirectory = Directory.GetCurrentDirectory();
-        public static readonly string UsersDirectory = Path.Combine(CurrentDirectory, "Users");
-        public static readonly string UsersFile = Path.Combine(UsersDirectory, "users.txt");
+        public static readonly string OldProfilesDirectory = Path.Combine(CurrentDirectory, "Users");
+        public static readonly string ProfilesDirectory = Path.Combine(CurrentDirectory, "Profile");
+        public static readonly string OldProfilesFile = Path.Combine(ProfilesDirectory, "users.txt");
+        public static readonly string ProfilesFile = Path.Combine(ProfilesDirectory, "profiles.txt");
         public static readonly string newsLink = "https://universe.flyff.com/news";
         public static readonly int defaultWidth = 800;
         public static readonly int defaultHeight = 600;
@@ -16,12 +18,16 @@ namespace FlyffUniverseLauncher
         public FlyffUniverseLauncher()
         {
             InitializeComponent();
+            PickRandomImage();
             AssignUsers();
             Text += Program.GetVersionAsString();
             SetUpUri();
             Resize += new EventHandler(ResizeWebView);
         }
 
+        /// <summary>
+        /// Sets up and sends a web request to show the news page.
+        /// </summary>
         public async void SetUpUri()
         {
             var name = "FlyffNews";
@@ -35,19 +41,56 @@ namespace FlyffUniverseLauncher
 
         private void AssignUsers()
         {
-            if (!Directory.Exists(UsersDirectory))
+
+            if (Directory.Exists(OldProfilesDirectory))
             {
-                Directory.CreateDirectory(UsersDirectory);
+                Directory.Move(OldProfilesDirectory, ProfilesDirectory);
             }
 
-            if (!File.Exists(UsersFile))
+            if (!Directory.Exists(ProfilesDirectory))
             {
-                usersInFile.AddColumn("User", "Last Login", "Width", "Height");
+                Directory.CreateDirectory(ProfilesDirectory);
+            }
+
+            if (File.Exists(OldProfilesFile))
+            {
+                File.Move(OldProfilesFile, ProfilesFile);
+            }
+
+            if (!File.Exists(ProfilesFile))
+            {
+                usersInFile.AddColumn("Profile", "Last Login", "Width", "Height");
                 return;
             }
 
-            usersInFile.CsvToTable(UsersFile);
-            selectUserInput.Items.AddRange(usersInFile.GetData("User").ToArray());
+            usersInFile.CsvToTable(ProfilesFile);
+
+            if (usersInFile.GetColumn("User") != null)
+            {
+                var allColumns = usersInFile.GetColumns();
+                var userIndex = -1;
+
+                for (int i = 0; i < allColumns.Count; i++)
+                {
+                    if (allColumns[i].ColumnName.Equals("User", StringComparison.OrdinalIgnoreCase))
+                    {
+                        userIndex = i;
+                        break;
+                    }
+                }
+
+                if (userIndex > -1)
+                {
+                    var profileColumn = new TTableColumn("Profile");
+                    var dataOfColumn = usersInFile.GetData("User");
+                    profileColumn.ColumnData.AddRange(dataOfColumn);
+                    usersInFile.RemoveColumn("User");
+                    usersInFile.AddColumn(profileColumn);
+                    usersInFile.MoveColumnIndex(profileColumn, userIndex);
+                }
+            }
+
+            selectUserInput.Items.AddRange(usersInFile.GetData("Profile").ToArray());
         }
 
         private void playButton_Click(object sender, EventArgs e)
@@ -58,29 +101,32 @@ namespace FlyffUniverseLauncher
             {
                 currentUser = currentUser.ToLower();
                 SaveCurrentUser(currentUser);
-                var flyff = new FlyffUniverseWindow(currentUser, widthInput.Text.ToInt(), heightInput.Text.ToInt());
+                var selectedWidth = widthInput.Text.ToInt().ClampValue(defaultWidth, Screen.FromControl(this).Bounds.Width);
+                var selectedHeight = heightInput.Text.ToInt().ClampValue(defaultHeight, Screen.FromControl(this).Bounds.Height);
+
+                var flyff = new FlyffUniverseWindow(currentUser, selectedWidth, selectedHeight);
                 flyff.Show();
             }
         }
 
         private void SaveCurrentUser(string user)
         {
-            if (!usersInFile.ExistsData("User", user))
+            if (!usersInFile.ExistsData("Profile", user))
             {
-                usersInFile.AddData("User", user.ToLower());
+                usersInFile.AddData("Profile", user.ToLower());
                 usersInFile.AddData("Last Login", DateTime.Now);
                 usersInFile.AddData("Width", widthInput.Text.IsEmpty() ? defaultWidth : widthInput.Text);
                 usersInFile.AddData("Height", heightInput.Text.IsEmpty() ? defaultHeight : heightInput.Text);
-                File.WriteAllLines(UsersFile, usersInFile.TableToCsv());
+                File.WriteAllLines(ProfilesFile, usersInFile.TableToCsv());
                 selectUserInput.Items.Clear();
-                selectUserInput.Items.AddRange(usersInFile.GetData("User").ToArray());
+                selectUserInput.Items.AddRange(usersInFile.GetData("Profile").ToArray());
             }
             else
             {
                 widthInput.Text = widthInput.Text.IsEmpty() ? defaultWidth.ToString() : widthInput.Text;
                 heightInput.Text = heightInput.Text.IsEmpty() ? defaultHeight.ToString() : heightInput.Text;
 
-                File.WriteAllLines(UsersFile, usersInFile.TableToCsv());
+                File.WriteAllLines(ProfilesFile, usersInFile.TableToCsv());
             }
         }
 
@@ -105,11 +151,33 @@ namespace FlyffUniverseLauncher
 
         private void selectUserInput_TextChanged(object sender, EventArgs e)
         {
-            if (!usersInFile.ExistsData("User", selectUserInput.Text.ToLower()))
+            if (!usersInFile.ExistsData("Profile", selectUserInput.Text.ToLower()))
             {
                 widthInput.Text = defaultWidth.ToString();
                 heightInput.Text = defaultHeight.ToString();
             }
+        }
+
+        private void PickRandomImage()
+        {
+            var listOfImages = new List<Bitmap>();
+            listOfImages.Add(Properties.Resources.img0);
+            listOfImages.Add(Properties.Resources.img1);
+            listOfImages.Add(Properties.Resources.img2);
+            listOfImages.Add(Properties.Resources.img3);
+            listOfImages.Add(Properties.Resources.img4);
+            listOfImages.Add(Properties.Resources.img5);
+            listOfImages.Add(Properties.Resources.img6);
+            listOfImages.Add(Properties.Resources.img7);
+            listOfImages.Add(Properties.Resources.img8);
+            listOfImages.Add(Properties.Resources.img9);
+            listOfImages.Add(Properties.Resources.img10);
+            listOfImages.Add(Properties.Resources.img11);
+
+            var random = new Random();
+            var randomNumber = random.Next(0, listOfImages.Count - 1);
+            
+            BackgroundImage = listOfImages[randomNumber];
         }
     }
 }
