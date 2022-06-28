@@ -1,14 +1,15 @@
 using Microsoft.Web.WebView2.Core;
+using System.Reflection;
 using TsadriuUtilities;
 
 namespace FlyffUniverseLauncher
 {
     public partial class FlyffUniverseLauncher : Form
     {
-        public static readonly string CurrentDirectory = Directory.GetCurrentDirectory();
-        public static readonly string OldProfilesDirectory = Path.Combine(CurrentDirectory, "Users");
-        public static readonly string ProfilesDirectory = Path.Combine(CurrentDirectory, "Profile");
-        public static readonly string OldProfilesFile = Path.Combine(ProfilesDirectory, "users.txt");
+        public static readonly string CurrentDirectory = Path.GetPathRoot(Environment.CurrentDirectory) ?? Directory.GetCurrentDirectory();
+        public static readonly string ProgramStorage = Path.Combine(CurrentDirectory, "Flyff Universe Launcher");
+        public static readonly string ProgramNetworkStorage = Path.Combine(ProgramStorage, "Network Data");
+        public static readonly string ProfilesDirectory = Path.Combine(ProgramStorage, "Profile");
         public static readonly string ProfilesFile = Path.Combine(ProfilesDirectory, "profiles.txt");
         public static readonly string newsLink = "https://universe.flyff.com/news";
         public static readonly int defaultWidth = 800;
@@ -30,8 +31,8 @@ namespace FlyffUniverseLauncher
         /// </summary>
         public async void SetUpUri()
         {
-            var name = "FlyffNews";
-            var directory = Path.Combine(Directory.GetCurrentDirectory(), name);
+            var name = "FlyffNews".ToLower();
+            var directory = Path.Combine(ProgramNetworkStorage, name);
             var webViewEnvironment = await CoreWebView2Environment.CreateAsync(string.Empty, directory);
             await newsWindow.EnsureCoreWebView2Async(webViewEnvironment);
             newsWindow.CoreWebView2.Settings.AreBrowserAcceleratorKeysEnabled = false;
@@ -41,20 +42,9 @@ namespace FlyffUniverseLauncher
 
         private void AssignUsers()
         {
-
-            if (Directory.Exists(OldProfilesDirectory))
-            {
-                Directory.Move(OldProfilesDirectory, ProfilesDirectory);
-            }
-
             if (!Directory.Exists(ProfilesDirectory))
             {
                 Directory.CreateDirectory(ProfilesDirectory);
-            }
-
-            if (File.Exists(OldProfilesFile))
-            {
-                File.Move(OldProfilesFile, ProfilesFile);
             }
 
             if (!File.Exists(ProfilesFile))
@@ -67,27 +57,7 @@ namespace FlyffUniverseLauncher
 
             if (usersInFile.GetColumn("User") != null)
             {
-                var allColumns = usersInFile.GetColumns();
-                var userIndex = -1;
-
-                for (int i = 0; i < allColumns.Count; i++)
-                {
-                    if (allColumns[i].ColumnName.Equals("User", StringComparison.OrdinalIgnoreCase))
-                    {
-                        userIndex = i;
-                        break;
-                    }
-                }
-
-                if (userIndex > -1)
-                {
-                    var profileColumn = new TTableColumn("Profile");
-                    var dataOfColumn = usersInFile.GetData("User");
-                    profileColumn.ColumnData.AddRange(dataOfColumn);
-                    usersInFile.RemoveColumn("User");
-                    usersInFile.AddColumn(profileColumn);
-                    usersInFile.MoveColumnIndex(profileColumn, userIndex);
-                }
+                usersInFile.RenameColumn("User", "Profile");
             }
 
             selectUserInput.Items.AddRange(usersInFile.GetData("Profile").ToArray());

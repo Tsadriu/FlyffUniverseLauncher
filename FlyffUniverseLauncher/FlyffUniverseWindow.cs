@@ -76,7 +76,7 @@ namespace FlyffUniverseLauncher
         /// <returns>A <see cref="Task"/> representing the asynchronous operation.</returns>
         private async Task LaunchGame()
         {
-            var directory = Path.Combine(Directory.GetCurrentDirectory(), currentUser);
+            var directory = Path.Combine(FlyffUniverseLauncher.ProgramNetworkStorage, currentUser);
             var webViewEnvironment = await CoreWebView2Environment.CreateAsync(string.Empty, directory);
             await webView.EnsureCoreWebView2Async(webViewEnvironment);
             webView.Source = new Uri(playLink);
