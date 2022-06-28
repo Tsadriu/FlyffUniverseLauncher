@@ -1,13 +1,13 @@
 # Flyff Universe Launcher!
-* Uses library Microsoft WebView2 (https://docs.microsoft.com/en-us/microsoft-edge/webview2/)
-## Features
-* News tab at the start of the program.
-* Can switch between users.
-* Custom resolution on program launch.
-* Press F11 to enter full screen ('Escape' doesn't remove the full screen, hurray!). Press F11 to remove the full screen.
+* Uses libraries:
+  * [Microsoft WebView2](https://docs.microsoft.com/en-us/microsoft-edge/webview2/)
+  * [TsadriuUtilities](https://github.com/Tsadriu/TsadriuUtilities)
 
-## Supported Platforms
-- [x] [Windows](https://github.com/Tsadriu/FlyffUniverseLauncher)
+##  Features 
+* Main window directly sending you into the news page to stay informed before launhing the game!
+* Ability to launch the game with different profiles! You no longer have to use different browsers!
+* Each profile can be set a custom resolution. Default is 800x600. This will be used when the game launches.
+* Pressing **F11** will enable full screen. The only way to remove the full screen is to press it again (*Escape users rejoice!*).
 
-## License
+##  License
 GPL-3.0
