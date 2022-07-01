@@ -5,15 +5,23 @@ namespace FlyffUniverseLauncher
 {
     public partial class FlyffUniverseWindow : Form
     {
+        public static FlyffUniverseWiki? currentWikiWidow;
         private readonly string playLink = "https://universe.flyff.com/play";
+        private readonly string flyffipediaLink = "https://flyffipedia.com/";
+        private readonly string madrigalinsideLink = "https://madrigalinside.com/";
+        private readonly string flyffulatorLink = "https://flyffulator.com/";
+        private readonly string madrigalmapsLink = "https://www.madrigalmaps.com/";
+        private readonly string flyffmodelviewerLink = "https://flyffmodelviewer.com/";
+        private readonly string skillulatorLink = "https://skillulator.com/";
         private string currentUser = string.Empty;
         private bool isFullScreen = false;
+
 
         public FlyffUniverseWindow(string windowName, int width, int height)
         {
             InitializeComponent();
             SetWindowProperties(windowName, width, height);
-            _ = LaunchGame(); 
+            _ = LaunchGame();
         }
 
         /// <summary>
@@ -23,7 +31,12 @@ namespace FlyffUniverseLauncher
         /// <param name="e">Current event.</param>
         private void webView_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode.ToString() == "F11")
+            if (e.KeyCode == Keys.F1)
+            {
+                flyffMenuStrip.Visible = !flyffMenuStrip.Visible;
+            }
+
+            if (e.KeyCode == Keys.F11)
             {
                 if (isFullScreen)
                 {
@@ -81,6 +94,58 @@ namespace FlyffUniverseLauncher
             await webView.EnsureCoreWebView2Async(webViewEnvironment);
             webView.Source = new Uri(playLink);
             webView.CoreWebView2.Settings.UserAgent = "Chrome";
+        }
+
+        private void flyffipediaMenuitem_Click(object sender, EventArgs e)
+        {
+            OpenHelperWindow(flyffipediaLink);
+        }
+
+        private void madrigalinsideMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenHelperWindow(madrigalinsideLink);
+        }
+
+        private void flyffulatorMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenHelperWindow(flyffulatorLink);
+        }
+
+        private void madrigalmapsMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenHelperWindow(madrigalmapsLink);
+        }
+
+        private void flyffModelViewerMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenHelperWindow(flyffmodelviewerLink);
+        }
+
+        private void skillulatorMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenHelperWindow(skillulatorLink);
+        }
+
+        private void OpenHelperWindow(string link = "")
+        {
+            if (currentWikiWidow == null)
+            {
+                currentWikiWidow = new FlyffUniverseWiki(link);
+                currentWikiWidow.Show();
+            }
+            else
+            {
+                if (currentWikiWidow.GetCurrentPage() != link)
+                {
+                    currentWikiWidow.SetPage(link);
+                }
+                currentWikiWidow.Activate();
+            }
+        }
+
+        private void hideToolbarMenuItem_Click(object sender, EventArgs e)
+        {
+            webView_KeyDown(sender, new KeyEventArgs(Keys.F1));
         }
     }
 }
