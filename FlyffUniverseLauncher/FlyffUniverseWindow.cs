@@ -20,6 +20,7 @@ namespace FlyffUniverseLauncher
         public FlyffUniverseWindow(string windowName, int width, int height)
         {
             InitializeComponent();
+            flyffMenuStrip.Visible = false;
             SetWindowProperties(windowName, width, height);
             _ = LaunchGame();
         }

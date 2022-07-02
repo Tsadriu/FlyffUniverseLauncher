@@ -1,13 +1,4 @@
 ﻿using Microsoft.Web.WebView2.Core;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using TsadriuUtilities;
 
 namespace FlyffUniverseLauncher
@@ -24,7 +15,7 @@ namespace FlyffUniverseLauncher
             InitializeComponent();
             SetWindowProperties();
             Resize += new EventHandler(ResizeWebView);
-            SetUpUri();
+            _ = SetUpUri();
         }
 
         /// <summary>
@@ -45,7 +36,7 @@ namespace FlyffUniverseLauncher
             ResizeWebView(this, new EventArgs());
         }
 
-        private async void SetUpUri()
+        private async Task SetUpUri()
         {
             settingUpUri = true;
             var name = "FlyffWiki".ToLower();
@@ -58,7 +49,7 @@ namespace FlyffUniverseLauncher
             settingUpUri = false;
         }
 
-        private async void FlyffUniverseWiki_KeyDown(object sender, KeyEventArgs e)
+        private void FlyffUniverseWiki_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode.ToString() == "Escape" && !settingUpUri)
             {

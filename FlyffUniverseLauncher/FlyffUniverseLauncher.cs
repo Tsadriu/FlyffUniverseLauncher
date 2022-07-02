@@ -22,14 +22,14 @@ namespace FlyffUniverseLauncher
             PickRandomImage();
             AssignUsers();
             Text += Program.GetVersionAsString();
-            SetUpUri();
+            _ = SetUpUri();
             Resize += new EventHandler(ResizeWebView);
         }
 
         /// <summary>
         /// Sets up and sends a web request to show the news page.
         /// </summary>
-        public async void SetUpUri()
+        public async Task SetUpUri()
         {
             var name = "FlyffNews".ToLower();
             var directory = Path.Combine(ProgramNetworkStorage, name);

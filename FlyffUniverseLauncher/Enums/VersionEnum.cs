@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace FlyffUniverseLauncher.Enums
+﻿namespace FlyffUniverseLauncher.Enums
 {
     public enum VersionEnum
     {
@@ -13,6 +7,7 @@ namespace FlyffUniverseLauncher.Enums
         V1_2_0,
         V1_3_0,
         V1_3_1,
-        V1_3_2
+        V1_3_2,
+        V1_4_0
     }
 }
