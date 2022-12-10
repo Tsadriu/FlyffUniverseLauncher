@@ -16,7 +16,6 @@ namespace FlyffUniverseLauncher
         private string currentUser = string.Empty;
         private bool isFullScreen = false;
 
-
         public FlyffUniverseWindow(string windowName, int width, int height)
         {
             InitializeComponent();
@@ -32,7 +31,7 @@ namespace FlyffUniverseLauncher
         /// <param name="e">Current event.</param>
         private void webView_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.F1)
+            if (e.KeyCode == Keys.Home)
             {
                 flyffMenuStrip.Visible = !flyffMenuStrip.Visible;
             }
@@ -94,7 +93,9 @@ namespace FlyffUniverseLauncher
             var webViewEnvironment = await CoreWebView2Environment.CreateAsync(string.Empty, directory);
             await webView.EnsureCoreWebView2Async(webViewEnvironment);
             webView.Source = new Uri(playLink);
-            webView.CoreWebView2.Settings.UserAgent = "Chrome";
+            webView.CoreWebView2.Settings.UserAgent = "Chrome/103.0.0.0";
+            webView.CoreWebView2.Settings.AreBrowserAcceleratorKeysEnabled = false;
+
         }
 
         private void flyffipediaMenuitem_Click(object sender, EventArgs e)
@@ -146,7 +147,7 @@ namespace FlyffUniverseLauncher
 
         private void hideToolbarMenuItem_Click(object sender, EventArgs e)
         {
-            webView_KeyDown(sender, new KeyEventArgs(Keys.F1));
+            webView_KeyDown(sender, new KeyEventArgs(Keys.Home));
         }
     }
 }
