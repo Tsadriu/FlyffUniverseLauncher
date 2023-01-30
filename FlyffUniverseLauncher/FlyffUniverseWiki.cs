@@ -6,7 +6,7 @@ namespace FlyffUniverseLauncher
     public partial class FlyffUniverseWiki : Form
     {
 
-        public static string? currentPage;
+        public static string currentPage = string.Empty;
         private bool settingUpUri = false;
 
         public FlyffUniverseWiki(string link)
@@ -53,7 +53,7 @@ namespace FlyffUniverseLauncher
         {
             if (e.KeyCode.ToString() == "Escape" && !settingUpUri)
             {
-                this.Close();
+                Close();
             }
         }
 
@@ -82,7 +82,7 @@ namespace FlyffUniverseLauncher
         {
             if (e.KeyCode == Keys.Escape)
             {
-                this.Close();
+                Close();
             }
         }
     }

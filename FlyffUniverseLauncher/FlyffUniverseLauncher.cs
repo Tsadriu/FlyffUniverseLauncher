@@ -22,7 +22,7 @@ namespace FlyffUniverseLauncher
             PickRandomImage();
             AssignUsers();
             Text += Program.GetVersionAsString();
-            _ = SetUpUri();
+            //_ = SetUpUri();
             Resize += new EventHandler(ResizeWebView);
         }
 
@@ -75,7 +75,7 @@ namespace FlyffUniverseLauncher
                 var selectedHeight = heightInput.Text.ToInt().ClampValue(defaultHeight, Screen.FromControl(this).Bounds.Height);
 
                 var flyff = new FlyffUniverseWindow(currentUser, selectedWidth, selectedHeight);
-                flyff.Show();
+                _ = flyff.LaunchGame();
             }
         }
 
@@ -133,24 +133,36 @@ namespace FlyffUniverseLauncher
 
         private void PickRandomImage()
         {
-            var listOfImages = new List<Bitmap>();
-            listOfImages.Add(Properties.Resources.img0);
-            listOfImages.Add(Properties.Resources.img1);
-            listOfImages.Add(Properties.Resources.img2);
-            listOfImages.Add(Properties.Resources.img3);
-            listOfImages.Add(Properties.Resources.img4);
-            listOfImages.Add(Properties.Resources.img5);
-            listOfImages.Add(Properties.Resources.img6);
-            listOfImages.Add(Properties.Resources.img7);
-            listOfImages.Add(Properties.Resources.img8);
-            listOfImages.Add(Properties.Resources.img9);
-            listOfImages.Add(Properties.Resources.img10);
-            listOfImages.Add(Properties.Resources.img11);
+            var listOfImages = new List<Bitmap>
+            {
+                Properties.Resources.img0,
+                Properties.Resources.img1,
+                Properties.Resources.img2,
+                Properties.Resources.img3,
+                Properties.Resources.img4,
+                Properties.Resources.img5,
+                Properties.Resources.img6,
+                Properties.Resources.img7,
+                Properties.Resources.img8,
+                Properties.Resources.img9,
+                Properties.Resources.img10,
+                Properties.Resources.img11
+            };
 
             var random = new Random();
             var randomNumber = random.Next(0, listOfImages.Count - 1);
             
             BackgroundImage = listOfImages[randomNumber];
+        }
+
+        private void closeNewsButton_Click(object sender, EventArgs e)
+        {
+            if (newsWindow.IsDisposed)
+            {
+                return;
+            }
+
+            newsWindow.Dispose();
         }
     }
 }

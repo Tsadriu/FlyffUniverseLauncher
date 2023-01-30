@@ -42,6 +42,7 @@ namespace FlyffUniverseLauncher
             this.toolStripTextBox1 = new System.Windows.Forms.ToolStripTextBox();
             this.flyffMenuStrip = new System.Windows.Forms.MenuStrip();
             this.hideToolbarMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.frozenGameClickHereToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.webView)).BeginInit();
             this.flyffMenuStrip.SuspendLayout();
             this.SuspendLayout();
@@ -125,6 +126,7 @@ namespace FlyffUniverseLauncher
             this.flyffModelViewerMenuItem,
             this.skillulatorMenuItem,
             this.toolStripTextBox1,
+            this.frozenGameClickHereToolStripMenuItem,
             this.hideToolbarMenuItem});
             this.flyffMenuStrip.Location = new System.Drawing.Point(0, 0);
             this.flyffMenuStrip.Name = "flyffMenuStrip";
@@ -138,6 +140,13 @@ namespace FlyffUniverseLauncher
             this.hideToolbarMenuItem.Size = new System.Drawing.Size(78, 20);
             this.hideToolbarMenuItem.Text = "Hide menu";
             this.hideToolbarMenuItem.Click += new System.EventHandler(this.hideToolbarMenuItem_Click);
+            // 
+            // frozenGameClickHereToolStripMenuItem
+            // 
+            this.frozenGameClickHereToolStripMenuItem.Name = "frozenGameClickHereToolStripMenuItem";
+            this.frozenGameClickHereToolStripMenuItem.Size = new System.Drawing.Size(147, 20);
+            this.frozenGameClickHereToolStripMenuItem.Text = "Frozen game? Click here";
+            this.frozenGameClickHereToolStripMenuItem.Click += new System.EventHandler(this.frozenGameClickHereToolStripMenuItem_Click);
             // 
             // FlyffUniverseWindow
             // 
@@ -170,5 +179,6 @@ namespace FlyffUniverseLauncher
         private ToolStripTextBox toolStripTextBox1;
         private MenuStrip flyffMenuStrip;
         private ToolStripMenuItem hideToolbarMenuItem;
+        private ToolStripMenuItem frozenGameClickHereToolStripMenuItem;
     }
 }

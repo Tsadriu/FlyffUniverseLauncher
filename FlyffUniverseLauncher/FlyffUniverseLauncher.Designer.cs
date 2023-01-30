@@ -40,6 +40,7 @@
             this.widthInput = new System.Windows.Forms.TextBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.profileSettingsTab = new System.Windows.Forms.TabPage();
+            this.closeNewsButton = new System.Windows.Forms.Button();
             this.windowSettingsTab = new System.Windows.Forms.TabPage();
             this.webViewPanel = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.newsWindow)).BeginInit();
@@ -149,6 +150,7 @@
             // 
             // profileSettingsTab
             // 
+            this.profileSettingsTab.Controls.Add(this.closeNewsButton);
             this.profileSettingsTab.Controls.Add(this.selectUserInput);
             this.profileSettingsTab.Controls.Add(this.selectUserLabel);
             this.profileSettingsTab.Controls.Add(this.playButton);
@@ -159,6 +161,16 @@
             this.profileSettingsTab.TabIndex = 0;
             this.profileSettingsTab.Text = "Profile Settings";
             this.profileSettingsTab.UseVisualStyleBackColor = true;
+            // 
+            // closeNewsButton
+            // 
+            this.closeNewsButton.Location = new System.Drawing.Point(6, 237);
+            this.closeNewsButton.Name = "closeNewsButton";
+            this.closeNewsButton.Size = new System.Drawing.Size(98, 23);
+            this.closeNewsButton.TabIndex = 2;
+            this.closeNewsButton.Text = "Close news tab";
+            this.closeNewsButton.UseVisualStyleBackColor = true;
+            this.closeNewsButton.Click += new System.EventHandler(this.closeNewsButton_Click);
             // 
             // windowSettingsTab
             // 
@@ -221,5 +233,6 @@
         private TabPage profileSettingsTab;
         private TabPage windowSettingsTab;
         private Panel webViewPanel;
+        private Button closeNewsButton;
     }
 }

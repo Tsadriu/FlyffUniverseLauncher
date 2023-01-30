@@ -5,7 +5,7 @@ namespace FlyffUniverseLauncher
 {
     internal static class Program
     {
-        private static VersionEnum currentVersion = VersionEnum.V1_5_0;
+        private static VersionEnum currentVersion = VersionEnum.V1_6_0;
         public static FlyffUniverseLauncher launcher = new FlyffUniverseLauncher();
 
         /// <summary>
@@ -18,6 +18,7 @@ namespace FlyffUniverseLauncher
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
             launcher.StartPosition = FormStartPosition.CenterScreen;
+            _ = launcher.SetUpUri();
             Application.Run(launcher);
         }
 

@@ -87,7 +87,7 @@ namespace FlyffUniverseLauncher
         /// Task that launches a web request to load the game.
         /// </summary>
         /// <returns>A <see cref="Task"/> representing the asynchronous operation.</returns>
-        private async Task LaunchGame()
+        public async Task LaunchGame()
         {
             var directory = Path.Combine(FlyffUniverseLauncher.ProgramNetworkStorage, currentUser);
             var webViewEnvironment = await CoreWebView2Environment.CreateAsync(string.Empty, directory);
@@ -95,7 +95,7 @@ namespace FlyffUniverseLauncher
             webView.Source = new Uri(playLink);
             webView.CoreWebView2.Settings.UserAgent = "Chrome/103.0.0.0";
             webView.CoreWebView2.Settings.AreBrowserAcceleratorKeysEnabled = false;
-
+            Show();
         }
 
         private void flyffipediaMenuitem_Click(object sender, EventArgs e)
@@ -148,6 +148,11 @@ namespace FlyffUniverseLauncher
         private void hideToolbarMenuItem_Click(object sender, EventArgs e)
         {
             webView_KeyDown(sender, new KeyEventArgs(Keys.Home));
+        }
+
+        private void frozenGameClickHereToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            webView.CoreWebView2.Reload();
         }
     }
 }
