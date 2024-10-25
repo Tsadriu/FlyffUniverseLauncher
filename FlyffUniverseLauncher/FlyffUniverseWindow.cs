@@ -1,26 +1,22 @@
-﻿using Microsoft.Web.WebView2.Core;
+﻿using FlyffUniverseLauncher.Helpers;
+using Microsoft.Web.WebView2.Core;
 using TsadriuUtilities;
+using TsadriuUtilitiesOld;
 
 namespace FlyffUniverseLauncher
 {
     public partial class FlyffUniverseWindow : Form
     {
         public static FlyffUniverseWiki? currentWikiWidow;
-        private readonly string playLink = "https://universe.flyff.com/play";
-        private readonly string flyffipediaLink = "https://flyffipedia.com/";
-        private readonly string madrigalinsideLink = "https://madrigalinside.com/";
-        private readonly string flyffulatorLink = "https://flyffulator.com/";
-        private readonly string madrigalmapsLink = "https://www.madrigalmaps.com/";
-        private readonly string flyffmodelviewerLink = "https://flyffmodelviewer.com/";
-        private readonly string skillulatorLink = "https://skillulator.com/";
-        private string currentUser = string.Empty;
-        private bool isFullScreen = false;
 
-        public FlyffUniverseWindow(string windowName, int width, int height)
+        private string _currentUser = string.Empty;
+        private bool _isFullScreen = false;
+
+        public FlyffUniverseWindow(string windowName, int width, int height, bool fullscreen)
         {
             InitializeComponent();
             flyffMenuStrip.Visible = false;
-            SetWindowProperties(windowName, width, height);
+            SetWindowProperties(windowName, width, height, fullscreen);
             _ = LaunchGame();
         }
 
@@ -31,26 +27,23 @@ namespace FlyffUniverseLauncher
         /// <param name="e">Current event.</param>
         private void webView_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Home)
+            switch (e.KeyCode)
             {
-                flyffMenuStrip.Visible = !flyffMenuStrip.Visible;
-            }
-
-            if (e.KeyCode == Keys.F11)
-            {
-                if (isFullScreen)
-                {
-                    isFullScreen = false;
+                case Keys.Home:
+                    flyffMenuStrip.Visible = !flyffMenuStrip.Visible;
+                    break;
+                case Keys.F11 when _isFullScreen:
+                    _isFullScreen = false;
                     FormBorderStyle = FormBorderStyle.Sizable;
                     WindowState = FormWindowState.Normal;
                     CenterToScreen();
-                    return;
-                }
-
-                isFullScreen = true;
-                FormBorderStyle = FormBorderStyle.None;
-                WindowState = FormWindowState.Maximized;
-                CenterToScreen();
+                    break;
+                case Keys.F11:
+                    _isFullScreen = true;
+                    FormBorderStyle = FormBorderStyle.None;
+                    WindowState = FormWindowState.Maximized;
+                    CenterToScreen();
+                    break;
             }
         }
 
@@ -70,17 +63,18 @@ namespace FlyffUniverseLauncher
         /// <param name="profileName">The profile user's name.</param>
         /// <param name="width">Width of the window.</param>
         /// <param name="height">Height of the window.</param>
-        private void SetWindowProperties(string profileName, int width, int height)
+        private void SetWindowProperties(string currentUser, int clientWidth, int clientHeight, bool isClientFullScreen)
         {
             StartPosition = Program.launcher.StartPosition;
-            currentUser = profileName;
-            Size = new Size(width, height);
-            Text += $"{Program.GetVersionAsString()} - {profileName.LetterUpperCase()}";
-            Resize += new EventHandler(ResizeWebView);
+            _currentUser = currentUser;
+            Size = new Size(clientWidth, clientHeight);
+            Text += $@"{Program.GetVersionAsString()} - {currentUser.LetterUpperCase()}";
+            Resize += ResizeWebView;
             Location = Program.launcher.Location;
 
             // Resize the window.
-            ResizeWebView(this, new EventArgs());
+            ResizeWebView(null, EventArgs.Empty);
+            webView_KeyDown(this, isClientFullScreen ? new KeyEventArgs(Keys.F11) : new KeyEventArgs(Keys.None));
         }
 
         /// <summary>
@@ -89,10 +83,10 @@ namespace FlyffUniverseLauncher
         /// <returns>A <see cref="Task"/> representing the asynchronous operation.</returns>
         public async Task LaunchGame()
         {
-            var directory = Path.Combine(FlyffUniverseLauncher.ProgramNetworkStorage, currentUser);
+            var directory = Path.Combine(FlyffUniverseLauncher.ProgramNetworkStorage, _currentUser);
             var webViewEnvironment = await CoreWebView2Environment.CreateAsync(string.Empty, directory);
             await webView.EnsureCoreWebView2Async(webViewEnvironment);
-            webView.Source = new Uri(playLink);
+            webView.Source = new Uri(FlyffUrls.Play);
             webView.CoreWebView2.Settings.UserAgent = "Chrome/103.0.0.0";
             webView.CoreWebView2.Settings.AreBrowserAcceleratorKeysEnabled = false;
             Show();
@@ -100,32 +94,32 @@ namespace FlyffUniverseLauncher
 
         private void flyffipediaMenuitem_Click(object sender, EventArgs e)
         {
-            OpenHelperWindow(flyffipediaLink);
+            OpenHelperWindow(FlyffUrls.Flyffipedia);
         }
 
         private void madrigalinsideMenuItem_Click(object sender, EventArgs e)
         {
-            OpenHelperWindow(madrigalinsideLink);
+            OpenHelperWindow(FlyffUrls.Madrigalinside);
         }
 
         private void flyffulatorMenuItem_Click(object sender, EventArgs e)
         {
-            OpenHelperWindow(flyffulatorLink);
+            OpenHelperWindow(FlyffUrls.Flyffulator);
         }
 
         private void madrigalmapsMenuItem_Click(object sender, EventArgs e)
         {
-            OpenHelperWindow(madrigalmapsLink);
+            OpenHelperWindow(FlyffUrls.Madrigalmaps);
         }
 
         private void flyffModelViewerMenuItem_Click(object sender, EventArgs e)
         {
-            OpenHelperWindow(flyffmodelviewerLink);
+            OpenHelperWindow(FlyffUrls.Flyffmodelviewer);
         }
 
         private void skillulatorMenuItem_Click(object sender, EventArgs e)
         {
-            OpenHelperWindow(skillulatorLink);
+            OpenHelperWindow(FlyffUrls.Skillulator);
         }
 
         private void OpenHelperWindow(string link = "")
