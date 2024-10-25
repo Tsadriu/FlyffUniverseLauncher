@@ -13,6 +13,9 @@
 ##  License
 GPL-3.0
 
+## Release 1.7.1
+* Fixed an issue where the *Manage profiles* tab could not save the new changes to a profile.
+
 ## Release 1.7.0
 * Implemented *Manage profiles* tab to change stuff about a selected profile.
 * Implemented *Full screen* in the *Window Settings* tab.

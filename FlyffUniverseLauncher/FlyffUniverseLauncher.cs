@@ -18,7 +18,6 @@ namespace FlyffUniverseLauncher
         public static readonly string OldProfilesFile = Path.Combine(ProfilesDirectory, "profiles.txt");
         public static readonly string NewProfilesFile = Path.Combine(ProfilesDirectory, "profiles.csv");
 
-        public static TTable usersInFile = new TTable();
         private static ICsvTable _profilesTable = new CsvTable();
         private const string ProfileColumn = "Profile";
         private const string LastLoginColumn = "Last Login";
@@ -241,7 +240,7 @@ namespace FlyffUniverseLauncher
             _profilesTable[PreferredHeightColumn].RowList[userIndex] = manageProfileHeightTextBox.Text;
             _profilesTable[IsFullScreenColumn].RowList[userIndex] = manageProfileFullscreenCheckBox.Checked ? "1" : "0";
 
-            File.WriteAllLines(ProfilesDirectory, _profilesTable.ToList());
+            File.WriteAllLines(NewProfilesFile, _profilesTable.ToList());
             ReloadComboBoxes();
             ResetManageProfileFields();
 
