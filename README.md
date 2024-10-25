@@ -10,11 +10,12 @@
 * Pressing **F11** will enable full screen. The only way to remove the full screen is to press it again (*Escape users rejoice!*).
 * Pressing **HOME** will show/hide a toolbar. Said toolbar provides shortcuts to the flyff's wikis.
 
-## TBA
-* Ability to manage the profiles in a better way (modify, delete, add).
-
 ##  License
 GPL-3.0
+
+## Release 1.7.0
+* Implemented *Manage profiles* tab to change stuff about a selected profile.
+* Implemented *Full screen* in the *Window Settings* tab.
 
 ## Release 1.6.0
 * Implemented button *Close news tab* to improve performance. Pressing this button will dispose the news section and can only be accessed again by closing and opening the program.
