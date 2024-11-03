@@ -68,7 +68,7 @@ namespace FlyffUniverseLauncher
             StartPosition = Program.launcher.StartPosition;
             _currentUser = currentUser;
             Size = new Size(clientWidth, clientHeight);
-            Text += $@"{Program.GetVersionAsString()} - {currentUser.LetterUpperCase()}";
+            Text += $@"{Program.GetVersionAsString()} - {currentUser.LetterUpperCase(0)}";
             Resize += ResizeWebView;
             Location = Program.launcher.Location;
 
