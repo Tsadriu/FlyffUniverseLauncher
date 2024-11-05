@@ -1,11 +1,14 @@
-﻿namespace FlyffUniverseLauncher;
+﻿using System.Text.RegularExpressions;
+using FlyffUniverseLauncher.Classes;
+
+namespace FlyffUniverseLauncher;
 
 public partial class FlyffUniverseNewProfileWindow : Form
 {
     public FlyffUniverseNewProfileWindow()
     {
         InitializeComponent();
-        Text = "Flyff Universe Launcher - " + Program.GetVersionAsString() + " - New profile";
+        Text = "Flyff Universe Launcher - " + Program.CurrentVersion + " - New profile";
         StartPosition = Program.launcher.StartPosition;
         Location = Program.launcher.Location;
         Program.launcher.Hide();
@@ -15,7 +18,7 @@ public partial class FlyffUniverseNewProfileWindow : Form
 
     private void newProfileSaveButton_Click(object sender, EventArgs e)
     {
-        if (string.IsNullOrEmpty(newProfileNameTextBox.Text))
+        if (string.IsNullOrWhiteSpace(newProfileNameTextBox.Text))
         {
             ShowMessageToUser(MessageBoxIcon.Warning, "Profile name missing", "Please enter a name for the new profile");
             return;
@@ -39,30 +42,19 @@ public partial class FlyffUniverseNewProfileWindow : Form
             return;
         }
 
-    }
-
-    private void SaveCurrentProfile(string user, string selectedWidth, string selectedHeight, bool isFullScreen)
-    {
-        int userIndex = GetProfileIndex(user);
-        bool hasProfile = userIndex != -1;
-
-        if (hasProfile)
+        Profile profile = new Profile()
         {
-            _profilesTable[PreferredWidthColumn].RowList[userIndex] = selectedWidth;
-            _profilesTable[PreferredHeightColumn].RowList[userIndex] = selectedHeight;
-            _profilesTable[IsFullScreenColumn].RowList[userIndex] = isFullScreen ? "1" : "0";
-        }
-        else
-        {
-            _profilesTable[ProfileColumn].AddRow(user);
-            _profilesTable[LastLoginColumn].AddRow(DateTime.Now.ToString("dd.MM.yyyy HH:mm:ss"));
-            _profilesTable[PreferredWidthColumn].AddRow(selectedWidth);
-            _profilesTable[PreferredHeightColumn].AddRow(selectedHeight);
-            _profilesTable[IsFullScreenColumn].AddRow(isFullScreen ? "1" : "0");
-            selectUserInput.Items.Add(user);
-        }
+            Name = Regex.Replace(newProfileNameTextBox.Text, @"[^\w\d]", string.Empty),
+            Width = int.Parse(newProfilePrefWidthTextBox.Text),
+            Height = int.Parse(newProfilePrefHeightTextBox.Text),
+            IsFullScreen = newProfileFullscreenCheckBox.Checked,
+        };
 
-        File.WriteAllLines(ProfilesFile, _profilesTable.ToList());
+        FlyffUniverseLauncher.SaveProfile(profile);
+        Program.launcher.SetCurrentProfile(profile);
+        Program.launcher.ReloadComboBoxes();
+        MessageBox.Show("Profile successfully saved!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        Dispose();
     }
 
     private void newProfileAdaptScreenSizeButton_Click(object sender, EventArgs e)

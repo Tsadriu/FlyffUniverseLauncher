@@ -63,6 +63,16 @@ namespace FlyffUniverseLauncher.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Elementor_Blizzard {
+            get {
+                object obj = ResourceManager.GetObject("Elementor_Blizzard", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap flyffipedia {
             get {
                 object obj = ResourceManager.GetObject("flyffipedia", resourceCulture);

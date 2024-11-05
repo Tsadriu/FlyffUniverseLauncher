@@ -44,7 +44,6 @@ partial class FlyffUniverseNewProfileWindow
         newProfileNameTextBox = new TextBox();
         newProfileNameLabel = new Label();
         newProfileTooltip = new ToolTip(components);
-        newProfileMessageLabel = new Label();
         SuspendLayout();
         // 
         // newProfileAdaptScreenSizeButton
@@ -134,23 +133,11 @@ partial class FlyffUniverseNewProfileWindow
         newProfileTooltip.ToolTipIcon = ToolTipIcon.Info;
         newProfileTooltip.ToolTipTitle = "Info";
         // 
-        // newProfileMessageLabel
-        // 
-        newProfileMessageLabel.AutoSize = true;
-        newProfileMessageLabel.BackColor = SystemColors.Control;
-        newProfileMessageLabel.ForeColor = Color.Red;
-        newProfileMessageLabel.Location = new Point(131, 223);
-        newProfileMessageLabel.Name = "newProfileMessageLabel";
-        newProfileMessageLabel.Size = new Size(164, 15);
-        newProfileMessageLabel.TabIndex = 24;
-        newProfileMessageLabel.Text = "Please give the profile a name";
-        // 
         // FlyffUniverseNewProfileWindow
         // 
         AutoScaleDimensions = new SizeF(7F, 15F);
         AutoScaleMode = AutoScaleMode.Font;
-        ClientSize = new Size(446, 264);
-        Controls.Add(newProfileMessageLabel);
+        ClientSize = new Size(446, 239);
         Controls.Add(newProfileAdaptScreenSizeButton);
         Controls.Add(newProfileSaveButton);
         Controls.Add(newProfileFullscreenCheckBox);
@@ -180,5 +167,4 @@ partial class FlyffUniverseNewProfileWindow
     private TextBox newProfileNameTextBox;
     private Label newProfileNameLabel;
     private ToolTip newProfileTooltip;
-    private Label newProfileMessageLabel;
 }
