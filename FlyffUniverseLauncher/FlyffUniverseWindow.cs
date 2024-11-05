@@ -1,5 +1,7 @@
-﻿using FlyffUniverseLauncher.Helpers;
+﻿using FlyffUniverseLauncher.Classes;
+using FlyffUniverseLauncher.Helpers;
 using Microsoft.Web.WebView2.Core;
+using System.Text.RegularExpressions;
 using TsadriuUtilities;
 using TsadriuUtilitiesOld;
 
@@ -9,14 +11,15 @@ namespace FlyffUniverseLauncher
     {
         public static FlyffUniverseWiki? currentWikiWidow;
 
-        private string _currentUser = string.Empty;
+        private Profile _currentProfile = null!;
         private bool _isFullScreen = false;
 
-        public FlyffUniverseWindow(string windowName, int width, int height, bool fullscreen)
+        public FlyffUniverseWindow(Profile profile)
         {
             InitializeComponent();
             flyffMenuStrip.Visible = false;
-            SetWindowProperties(windowName, width, height, fullscreen);
+            _currentProfile = profile;
+            SetWindowProperties();
             _ = LaunchGame();
         }
 
@@ -60,21 +63,17 @@ namespace FlyffUniverseLauncher
         /// <summary>
         /// Sets the window's properties, such as the window name, size and location.
         /// </summary>
-        /// <param name="profileName">The profile user's name.</param>
-        /// <param name="width">Width of the window.</param>
-        /// <param name="height">Height of the window.</param>
-        private void SetWindowProperties(string currentUser, int clientWidth, int clientHeight, bool isClientFullScreen)
+        private void SetWindowProperties()
         {
             StartPosition = Program.launcher.StartPosition;
-            _currentUser = currentUser;
-            Size = new Size(clientWidth, clientHeight);
-            Text += $@"{Program.GetVersionAsString()} - {currentUser.LetterUpperCase()}";
+            Size = new Size(_currentProfile.Width, _currentProfile.Height);
+            Text += $@"{Program.CurrentVersion} - {_currentProfile.Name.LetterUpperCase(0)}";
             Resize += ResizeWebView;
             Location = Program.launcher.Location;
 
             // Resize the window.
             ResizeWebView(null, EventArgs.Empty);
-            webView_KeyDown(this, isClientFullScreen ? new KeyEventArgs(Keys.F11) : new KeyEventArgs(Keys.None));
+            webView_KeyDown(this, _currentProfile.IsFullScreen ? new KeyEventArgs(Keys.F11) : new KeyEventArgs(Keys.None));
         }
 
         /// <summary>
@@ -83,7 +82,7 @@ namespace FlyffUniverseLauncher
         /// <returns>A <see cref="Task"/> representing the asynchronous operation.</returns>
         public async Task LaunchGame()
         {
-            var directory = Path.Combine(FlyffUniverseLauncher.ProgramNetworkStorage, _currentUser);
+            var directory = Path.Combine(FlyffUniverseLauncher.ProgramNetworkStorage, Regex.Replace(_currentProfile.Name, @"[^\w\d]", string.Empty));
             var webViewEnvironment = await CoreWebView2Environment.CreateAsync(string.Empty, directory);
             await webView.EnsureCoreWebView2Async(webViewEnvironment);
             webView.Source = new Uri(FlyffUrls.Play);
@@ -102,14 +101,9 @@ namespace FlyffUniverseLauncher
             OpenHelperWindow(FlyffUrls.Madrigalinside);
         }
 
-        private void flyffulatorMenuItem_Click(object sender, EventArgs e)
-        {
-            OpenHelperWindow(FlyffUrls.Flyffulator);
-        }
-
         private void madrigalmapsMenuItem_Click(object sender, EventArgs e)
         {
-            OpenHelperWindow(FlyffUrls.Madrigalmaps);
+            OpenHelperWindow(FlyffUrls.FlyffMap);
         }
 
         private void flyffModelViewerMenuItem_Click(object sender, EventArgs e)
@@ -136,7 +130,10 @@ namespace FlyffUniverseLauncher
                     currentWikiWidow.SetPage(link);
                 }
                 currentWikiWidow.Activate();
+                currentWikiWidow.Focus();
             }
+
+            hideToolbarMenuItem_Click(this, EventArgs.Empty);
         }
 
         private void hideToolbarMenuItem_Click(object sender, EventArgs e)
@@ -147,6 +144,16 @@ namespace FlyffUniverseLauncher
         private void frozenGameClickHereToolStripMenuItem_Click(object sender, EventArgs e)
         {
             webView.CoreWebView2.Reload();
+        }
+
+        private void flyffMeMadrigalMap_Click(object sender, EventArgs e)
+        {
+            OpenHelperWindow(FlyffUrls.FlyffMap);
+        }
+
+        private void flyffMeTrainer_Click(object sender, EventArgs e)
+        {
+            OpenHelperWindow(FlyffUrls.FlyffTrainer);
         }
     }
 }

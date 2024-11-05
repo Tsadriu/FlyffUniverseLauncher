@@ -6,7 +6,7 @@ namespace FlyffUniverseLauncher
 {
     internal static class Program
     {
-        private static VersionEnum currentVersion = VersionEnum.V1_7_1;
+        public const string CurrentVersion = "Version 1.8.0";
         public static FlyffUniverseLauncher launcher = new FlyffUniverseLauncher();
 
         /// <summary>
@@ -19,17 +19,7 @@ namespace FlyffUniverseLauncher
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
             launcher.StartPosition = FormStartPosition.CenterScreen;
-            _ = launcher.SetUpUri();
             Application.Run(launcher);
-        }
-
-        /// <summary>
-        /// Returns the current version as a string. Note that is removes the V and replaces the _ as a . found in <see cref="VersionEnum"/>.
-        /// </summary>
-        /// <returns><see cref="currentVersion"/> as "Version x.x.x" (<see cref="VersionEnum.V1_0_0"/> returns Version 1.0.0 and so on).</returns>
-        public static string GetVersionAsString()
-        {
-            return $"Version {currentVersion.ToString().Remove("V").Replace("_", ".")}";
         }
     }
 }

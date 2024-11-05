@@ -28,7 +28,7 @@ namespace FlyffUniverseLauncher
         {
             StartPosition = Program.launcher.StartPosition;
             Size = new Size(1280.ClampValue(1280, Screen.FromControl(this).Bounds.Width), 720.ClampValue(720, Screen.FromControl(this).Bounds.Height));
-            Text += $"{Program.GetVersionAsString()} - Helper";
+            Text += $"{Program.CurrentVersion} - Helper";
             Resize += new EventHandler(ResizeWebView);
             Location = Program.launcher.Location;
 
