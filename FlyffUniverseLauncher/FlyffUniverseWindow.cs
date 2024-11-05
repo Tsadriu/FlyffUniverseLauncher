@@ -101,14 +101,9 @@ namespace FlyffUniverseLauncher
             OpenHelperWindow(FlyffUrls.Madrigalinside);
         }
 
-        private void flyffulatorMenuItem_Click(object sender, EventArgs e)
-        {
-            OpenHelperWindow(FlyffUrls.Flyffulator);
-        }
-
         private void madrigalmapsMenuItem_Click(object sender, EventArgs e)
         {
-            OpenHelperWindow(FlyffUrls.Madrigalmaps);
+            OpenHelperWindow(FlyffUrls.FlyffMap);
         }
 
         private void flyffModelViewerMenuItem_Click(object sender, EventArgs e)
@@ -135,6 +130,7 @@ namespace FlyffUniverseLauncher
                     currentWikiWidow.SetPage(link);
                 }
                 currentWikiWidow.Activate();
+                currentWikiWidow.Focus();
             }
 
             hideToolbarMenuItem_Click(this, EventArgs.Empty);
@@ -148,6 +144,16 @@ namespace FlyffUniverseLauncher
         private void frozenGameClickHereToolStripMenuItem_Click(object sender, EventArgs e)
         {
             webView.CoreWebView2.Reload();
+        }
+
+        private void flyffMeMadrigalMap_Click(object sender, EventArgs e)
+        {
+            OpenHelperWindow(FlyffUrls.FlyffMap);
+        }
+
+        private void flyffMeTrainer_Click(object sender, EventArgs e)
+        {
+            OpenHelperWindow(FlyffUrls.FlyffTrainer);
         }
     }
 }

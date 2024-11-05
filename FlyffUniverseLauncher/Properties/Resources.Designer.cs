@@ -73,9 +73,29 @@ namespace FlyffUniverseLauncher.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Elementor_Cursed_Mind {
+            get {
+                object obj = ResourceManager.GetObject("Elementor_Cursed_Mind", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap flyffipedia {
             get {
                 object obj = ResourceManager.GetObject("flyffipedia", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap flyfftrainer {
+            get {
+                object obj = ResourceManager.GetObject("flyfftrainer", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -213,6 +233,16 @@ namespace FlyffUniverseLauncher.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Jester_Silence {
+            get {
+                object obj = ResourceManager.GetObject("Jester_Silence", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap madrigalmap {
             get {
                 object obj = ResourceManager.GetObject("madrigalmap", resourceCulture);
@@ -226,6 +256,16 @@ namespace FlyffUniverseLauncher.Properties {
         internal static System.Drawing.Bitmap madrigaslinside {
             get {
                 object obj = ResourceManager.GetObject("madrigaslinside", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Mercenary_Sword_Mastery {
+            get {
+                object obj = ResourceManager.GetObject("Mercenary_Sword_Mastery", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

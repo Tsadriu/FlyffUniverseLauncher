@@ -118,9 +118,6 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="modelviewer" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Assets\Images\modelviewer.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="img1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Assets\Images\img1.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -133,17 +130,17 @@
   <data name="img11" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Assets\Images\img11.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="img4" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Assets\Images\img4.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="img0" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\Images\img0.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="modelviewer" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\Images\modelviewer.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="img2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Assets\Images\img2.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="img8" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Assets\Images\img8.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="flyffulator" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Assets\Images\flyffulator.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="img10" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Assets\Images\img10.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -154,6 +151,9 @@
   <data name="img9" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Assets\Images\img9.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Mercenary_Sword_Mastery" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\Images\Mercenary_Sword_Mastery.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="madrigaslinside" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Assets\Images\madrigaslinside.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -163,8 +163,17 @@
   <data name="flyffipedia" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Assets\Images\flyffipedia.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="img0" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Assets\Images\img0.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Elementor_Cursed_Mind" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\Images\Elementor_Cursed_Mind.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="flyfftrainer" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\Images\flyfftrainer.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Elementor_Blizzard" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\Images\Elementor_Blizzard.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="flyffulator" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\Images\flyffulator.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="skillulator" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Assets\Images\skillulator.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -172,7 +181,10 @@
   <data name="img5" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Assets\Images\img5.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Elementor_Blizzard" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Assets\Images\Elementor_Blizzard.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="img4" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\Images\img4.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Jester_Silence" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\Images\Jester_Silence.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

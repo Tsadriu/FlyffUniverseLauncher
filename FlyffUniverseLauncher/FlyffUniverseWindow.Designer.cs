@@ -31,16 +31,20 @@ namespace FlyffUniverseLauncher
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FlyffUniverseWindow));
             webView = new Microsoft.Web.WebView2.WinForms.WebView2();
             flyffipediaMenuitem = new ToolStripMenuItem();
             madrigalinsideMenuItem = new ToolStripMenuItem();
-            madrigalmapsMenuItem = new ToolStripMenuItem();
             flyffModelViewerMenuItem = new ToolStripMenuItem();
             skillulatorMenuItem = new ToolStripMenuItem();
             flyffMenuStrip = new MenuStrip();
+            flyffMeMenuItem = new ToolStripMenuItem();
+            flyffMeMadrigalMap = new ToolStripMenuItem();
+            flyffMeTrainer = new ToolStripMenuItem();
             frozenGameClickHereToolStripMenuItem = new ToolStripMenuItem();
             hideToolbarMenuItem = new ToolStripMenuItem();
+            gameWindowTooltip = new ToolTip(components);
             ((System.ComponentModel.ISupportInitialize)webView).BeginInit();
             flyffMenuStrip.SuspendLayout();
             SuspendLayout();
@@ -74,14 +78,6 @@ namespace FlyffUniverseLauncher
             madrigalinsideMenuItem.Text = "Madrigalinside";
             madrigalinsideMenuItem.Click += madrigalinsideMenuItem_Click;
             // 
-            // madrigalmapsMenuItem
-            // 
-            madrigalmapsMenuItem.Image = global::FlyffUniverseLauncher.Properties.Resources.madrigalmap;
-            madrigalmapsMenuItem.Name = "madrigalmapsMenuItem";
-            madrigalmapsMenuItem.Size = new Size(111, 20);
-            madrigalmapsMenuItem.Text = "Madrigalmaps";
-            madrigalmapsMenuItem.Click += madrigalmapsMenuItem_Click;
-            // 
             // flyffModelViewerMenuItem
             // 
             flyffModelViewerMenuItem.Image = global::FlyffUniverseLauncher.Properties.Resources.modelviewer;
@@ -100,17 +96,41 @@ namespace FlyffUniverseLauncher
             // 
             // flyffMenuStrip
             // 
-            flyffMenuStrip.Dock = DockStyle.Left;
-            flyffMenuStrip.Items.AddRange(new ToolStripItem[] { flyffipediaMenuitem, madrigalinsideMenuItem, madrigalmapsMenuItem, flyffModelViewerMenuItem, skillulatorMenuItem, frozenGameClickHereToolStripMenuItem, hideToolbarMenuItem });
-            flyffMenuStrip.LayoutStyle = ToolStripLayoutStyle.Table;
+            flyffMenuStrip.Items.AddRange(new ToolStripItem[] { flyffipediaMenuitem, madrigalinsideMenuItem, flyffMeMenuItem, flyffModelViewerMenuItem, skillulatorMenuItem, frozenGameClickHereToolStripMenuItem, hideToolbarMenuItem });
+            flyffMenuStrip.LayoutStyle = ToolStripLayoutStyle.HorizontalStackWithOverflow;
             flyffMenuStrip.Location = new Point(0, 0);
             flyffMenuStrip.Name = "flyffMenuStrip";
-            flyffMenuStrip.Size = new Size(139, 681);
+            flyffMenuStrip.Size = new Size(1264, 24);
             flyffMenuStrip.TabIndex = 2;
             flyffMenuStrip.Text = "Flyff Universe Launcher Helper";
             // 
+            // flyffMeMenuItem
+            // 
+            flyffMeMenuItem.DropDownItems.AddRange(new ToolStripItem[] { flyffMeMadrigalMap, flyffMeTrainer });
+            flyffMeMenuItem.Image = global::FlyffUniverseLauncher.Properties.Resources.flyfftrainer;
+            flyffMeMenuItem.Name = "flyffMeMenuItem";
+            flyffMeMenuItem.Size = new Size(78, 20);
+            flyffMeMenuItem.Text = "Flyff.Me";
+            // 
+            // flyffMeMadrigalMap
+            // 
+            flyffMeMadrigalMap.Image = global::FlyffUniverseLauncher.Properties.Resources.Elementor_Cursed_Mind;
+            flyffMeMadrigalMap.Name = "flyffMeMadrigalMap";
+            flyffMeMadrigalMap.Size = new Size(180, 22);
+            flyffMeMadrigalMap.Text = "Map";
+            flyffMeMadrigalMap.Click += flyffMeMadrigalMap_Click;
+            // 
+            // flyffMeTrainer
+            // 
+            flyffMeTrainer.Image = global::FlyffUniverseLauncher.Properties.Resources.Mercenary_Sword_Mastery;
+            flyffMeTrainer.Name = "flyffMeTrainer";
+            flyffMeTrainer.Size = new Size(180, 22);
+            flyffMeTrainer.Text = "Trainer";
+            flyffMeTrainer.Click += flyffMeTrainer_Click;
+            // 
             // frozenGameClickHereToolStripMenuItem
             // 
+            frozenGameClickHereToolStripMenuItem.AutoToolTip = true;
             frozenGameClickHereToolStripMenuItem.Image = global::FlyffUniverseLauncher.Properties.Resources.Elementor_Blizzard;
             frozenGameClickHereToolStripMenuItem.Name = "frozenGameClickHereToolStripMenuItem";
             frozenGameClickHereToolStripMenuItem.Size = new Size(103, 20);
@@ -120,8 +140,9 @@ namespace FlyffUniverseLauncher
             // 
             // hideToolbarMenuItem
             // 
+            hideToolbarMenuItem.Image = global::FlyffUniverseLauncher.Properties.Resources.Jester_Silence;
             hideToolbarMenuItem.Name = "hideToolbarMenuItem";
-            hideToolbarMenuItem.Size = new Size(78, 19);
+            hideToolbarMenuItem.Size = new Size(94, 20);
             hideToolbarMenuItem.Text = "Hide menu";
             hideToolbarMenuItem.Click += hideToolbarMenuItem_Click;
             // 
@@ -148,11 +169,14 @@ namespace FlyffUniverseLauncher
         private Microsoft.Web.WebView2.WinForms.WebView2 webView;
         private ToolStripMenuItem flyffipediaMenuitem;
         private ToolStripMenuItem madrigalinsideMenuItem;
-        private ToolStripMenuItem madrigalmapsMenuItem;
         private ToolStripMenuItem flyffModelViewerMenuItem;
         private ToolStripMenuItem skillulatorMenuItem;
         private MenuStrip flyffMenuStrip;
         private ToolStripMenuItem hideToolbarMenuItem;
         private ToolStripMenuItem frozenGameClickHereToolStripMenuItem;
+        private ToolTip gameWindowTooltip;
+        private ToolStripMenuItem flyffMeMenuItem;
+        private ToolStripMenuItem flyffMeMadrigalMap;
+        private ToolStripMenuItem flyffMeTrainer;
     }
 }

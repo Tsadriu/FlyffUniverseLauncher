@@ -4,14 +4,26 @@
   * [TsadriuUtilities](https://github.com/Tsadriu/TsadriuUtilities)
 
 ##  Features 
-* Main window directly sending you into the news page to stay informed before launhing the game!
 * Ability to launch the game with different profiles! You no longer have to use different browsers!
-* Each profile can be set a custom resolution. Default is 800x600. This will be used when the game launches.
+* Each profile can be set a custom resolution.
 * Pressing **F11** will enable full screen. The only way to remove the full screen is to press it again (*Escape users rejoice!*).
-* Pressing **HOME** will show/hide a toolbar. Said toolbar provides shortcuts to the flyff's wikis.
+* Pressing **HOME** will show/hide a toolbar. Said toolbar provides shortcuts to the flyff's wikis, and other useful websites.
 
 ##  License
 GPL-3.0
+
+## Release 1.8.0
+* Updated project `.NET` version from `.NET 6.0` to `.NET 8.0`
+* Fixed flickering of the ``Profile Settings``, and ``Manage Profiles`` when hovering with the mouse.
+* Removed news webpage.
+  * Because of this, the size of the launcher is also smaller.
+* Removed the `Flyffulator` shortcut since the website doesn't work anymore.
+* Implemented a new way to make ``New profiles``, simplifying the process.
+* Moved toolbar from the top to the left.
+  * Toolbar now automatically hides after pressing a shortcut.
+  * Implemented ``Flyff.Me`` shortcut, which has a madrigal map with all enemies info + where the player should farm to get the most experience.
+* Button ``Delete this profile`` and ``Delete all profiles`` now properly delete the selected/all profiles, instead of launching an exception.
+  * This also includes the "simulated" browser page, which also reduces the size occupied by the program.
 
 ## Release 1.7.1
 * Fixed an issue where the *Manage profiles* tab could not save the new changes to a profile.
