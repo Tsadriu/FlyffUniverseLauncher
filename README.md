@@ -10,7 +10,7 @@
 * Pressing **HOME** will show/hide a toolbar. Said toolbar provides shortcuts to the flyff's wikis, and other useful websites.
 
 ##  License
-GPL-3.0
+MIT
 
 ## Release 1.8.0
 * Updated project `.NET` version from `.NET 6.0` to `.NET 8.0`
