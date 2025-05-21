@@ -18,6 +18,7 @@ MIT
   * English (US)
   * Italian (Swiss)
   * German (Germany)
+    * Changing the language will be saved in a `launcher.json` file so it will be loaded for the next time the launcher is opened.
 ### Quality of Life
 * Implemented a fix in case there is a profile saved in the `Profile` Path, but no actual data existed about the profile in the `Network Data` path.
   * This will now create a new profile with the same username.
