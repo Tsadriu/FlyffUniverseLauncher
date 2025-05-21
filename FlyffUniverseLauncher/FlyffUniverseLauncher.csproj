@@ -31,6 +31,9 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </EmbeddedResource>
+    <EmbeddedResource Update="Properties\Resources.it-ch.resx">
+      <DependentUpon>Resources.resx</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
 
   <ItemGroup>
@@ -43,8 +46,11 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Update="FlyffUniverseNewProfileWindow.cs">
+    <Compile Update="FlyffUniverseNewProfile.cs">
       <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="ManageProfileHelpers.cs">
+      <DependentUpon>FlyffUniverseLauncher.cs</DependentUpon>
     </Compile>
   </ItemGroup>
 

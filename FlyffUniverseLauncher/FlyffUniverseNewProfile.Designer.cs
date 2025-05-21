@@ -2,7 +2,7 @@
 
 namespace FlyffUniverseLauncher;
 
-partial class FlyffUniverseNewProfileWindow
+sealed partial class FlyffUniverseNewProfile
 {
     /// <summary>
     /// Required designer variable.
@@ -33,7 +33,7 @@ partial class FlyffUniverseNewProfileWindow
     private void InitializeComponent()
     {
         components = new Container();
-        ComponentResourceManager resources = new ComponentResourceManager(typeof(FlyffUniverseNewProfileWindow));
+        ComponentResourceManager resources = new ComponentResourceManager(typeof(FlyffUniverseNewProfile));
         newProfileAdaptScreenSizeButton = new Button();
         newProfileSaveButton = new Button();
         newProfileFullscreenCheckBox = new CheckBox();
@@ -149,7 +149,7 @@ partial class FlyffUniverseNewProfileWindow
         Controls.Add(newProfileNameLabel);
         Icon = (Icon)resources.GetObject("$this.Icon");
         MaximizeBox = false;
-        Name = "FlyffUniverseNewProfileWindow";
+        Name = "FlyffUniverseNewProfile";
         Text = "FlyffUniverseNewProfileWindow";
         ResumeLayout(false);
         PerformLayout();

@@ -4,13 +4,31 @@
   * [TsadriuUtilities](https://github.com/Tsadriu/TsadriuUtilities)
 
 ##  Features 
-* Ability to launch the game with different profiles! You no longer have to use different browsers!
-* Each profile can be set a custom resolution.
-* Pressing **F11** will enable full screen. The only way to remove the full screen is to press it again (*Escape users rejoice!*).
-* Pressing **HOME** will show/hide a toolbar. Said toolbar provides shortcuts to the flyff's wikis, and other useful websites.
+* Ability to launch and play the game with multiple profiles!
+  * Each profile can be customized.
+* Pressing **F11** will enable full screen. The only way to remove the full screen is to press it again.
+* Pressing **HOME** will show/hide a toolbar. Said toolbar provides shortcuts to the flyff's wiki, and other useful websites.
 
 ##  License
 MIT
+
+## Release 2.0
+### New Features
+* Implemented localization in the launcher for the following languages:
+  * English (US)
+  * Italian (Swiss)
+  * German (Germany)
+### Quality of Life
+* Implemented a fix in case there is a profile saved in the `Profile` Path, but no actual data existed about the profile in the `Network Data` path.
+  * This will now create a new profile with the same username.
+  * Pressing either `Delete this profile` or `Delete all profiles` will now show a new confirmation dialog window to the user, before proceeding with the deletion.
+### Bugfixes
+* Trying to press `Play` without selecting a profile will now show an error dialog.
+* Fixed an issue when trying to press `Play` by writing an invalid username (e.g. `ashaiuwhui`) would crash the application.
+* Fixed an issue that allowed the user to select a profile, go to the `Manage Profiles` tab, delete the profile and then launch the profile.
+* `Manage Profiles` section: 
+  * Fixed an issue that would crash the application when the user tried to save a profile without changing their username. Previously, this would not crash if the user changed the profile's name.
+
 
 ## Release 1.8.0
 * Updated project `.NET` version from `.NET 6.0` to `.NET 8.0`
