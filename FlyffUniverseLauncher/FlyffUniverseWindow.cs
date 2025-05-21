@@ -2,24 +2,25 @@
 using FlyffUniverseLauncher.Helpers;
 using Microsoft.Web.WebView2.Core;
 using System.Text.RegularExpressions;
-using TsadriuUtilities;
+using FlyffUniverseLauncher.Properties;
 using TsadriuUtilitiesOld;
 
 namespace FlyffUniverseLauncher
 {
-    public partial class FlyffUniverseWindow : Form
+    public sealed partial class FlyffUniverseWindow : Form
     {
         public static FlyffUniverseWiki? currentWikiWidow;
 
-        private Profile _currentProfile = null!;
-        private bool _isFullScreen = false;
+        private Profile _currentProfile;
+        private bool _isFullScreen;
 
         public FlyffUniverseWindow(Profile profile)
         {
+            _currentProfile = profile;
             InitializeComponent();
             flyffMenuStrip.Visible = false;
-            _currentProfile = profile;
             SetWindowProperties();
+            UpdateAllLabelsLanguage();
             _ = LaunchGame();
         }
 
@@ -82,40 +83,62 @@ namespace FlyffUniverseLauncher
         /// <returns>A <see cref="Task"/> representing the asynchronous operation.</returns>
         public async Task LaunchGame()
         {
-            var directory = Path.Combine(FlyffUniverseLauncher.ProgramNetworkStorage, Regex.Replace(_currentProfile.Name, @"[^\w\d]", string.Empty));
+            var directory = Path.Combine(FlyffUniverseConstants.Directory.ProgramNetworkStorage, Regex.Replace(_currentProfile.Name, @"[^\w\d]", string.Empty));
             var webViewEnvironment = await CoreWebView2Environment.CreateAsync(string.Empty, directory);
             await webView.EnsureCoreWebView2Async(webViewEnvironment);
-            webView.Source = new Uri(FlyffUrls.Play);
+            webView.Source = new Uri(FlyffUniverseConstants.Url.Play);
             webView.CoreWebView2.Settings.UserAgent = "Chrome/103.0.0.0";
             webView.CoreWebView2.Settings.AreBrowserAcceleratorKeysEnabled = false;
             Show();
         }
 
+        public void UpdateLabelsBasedOnCulture()
+        {
+            var currentCulture = Resources.Culture;
+
+            flyffipediaMenuitem.Text = "";
+        }
+
         private void flyffipediaMenuitem_Click(object sender, EventArgs e)
         {
-            OpenHelperWindow(FlyffUrls.Flyffipedia);
+            OpenHelperWindow(FlyffUniverseConstants.Url.Flyffipedia);
         }
 
         private void madrigalinsideMenuItem_Click(object sender, EventArgs e)
         {
-            OpenHelperWindow(FlyffUrls.Madrigalinside);
-        }
-
-        private void madrigalmapsMenuItem_Click(object sender, EventArgs e)
-        {
-            OpenHelperWindow(FlyffUrls.FlyffMap);
+            OpenHelperWindow(FlyffUniverseConstants.Url.Madrigalinside);
         }
 
         private void flyffModelViewerMenuItem_Click(object sender, EventArgs e)
         {
-            OpenHelperWindow(FlyffUrls.Flyffmodelviewer);
+            OpenHelperWindow(FlyffUniverseConstants.Url.Flyffmodelviewer);
         }
 
         private void skillulatorMenuItem_Click(object sender, EventArgs e)
         {
-            OpenHelperWindow(FlyffUrls.Skillulator);
+            OpenHelperWindow(FlyffUniverseConstants.Url.Skillulator);
         }
 
+        private void hideToolbarMenuItem_Click(object sender, EventArgs e)
+        {
+            webView_KeyDown(sender, new KeyEventArgs(Keys.Home));
+        }
+
+        private void frozenGameClickHereToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            webView.CoreWebView2.Reload();
+        }
+
+        private void flyffMeMadrigalMap_Click(object sender, EventArgs e)
+        {
+            OpenHelperWindow(FlyffUniverseConstants.Url.FlyffMap);
+        }
+
+        private void flyffMeTrainer_Click(object sender, EventArgs e)
+        {
+            OpenHelperWindow(FlyffUniverseConstants.Url.FlyffTrainer);
+        }
+        
         private void OpenHelperWindow(string link = "")
         {
             if (currentWikiWidow == null)
@@ -136,24 +159,11 @@ namespace FlyffUniverseLauncher
             hideToolbarMenuItem_Click(this, EventArgs.Empty);
         }
 
-        private void hideToolbarMenuItem_Click(object sender, EventArgs e)
+        private void UpdateAllLabelsLanguage()
         {
-            webView_KeyDown(sender, new KeyEventArgs(Keys.Home));
-        }
-
-        private void frozenGameClickHereToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            webView.CoreWebView2.Reload();
-        }
-
-        private void flyffMeMadrigalMap_Click(object sender, EventArgs e)
-        {
-            OpenHelperWindow(FlyffUrls.FlyffMap);
-        }
-
-        private void flyffMeTrainer_Click(object sender, EventArgs e)
-        {
-            OpenHelperWindow(FlyffUrls.FlyffTrainer);
+            flyffModelViewerMenuItem.Text = Resources.FULW_flyffModelViewerMenuItem;
+            frozenGameClickHereToolStripMenuItem.Text = Resources.FULW_frozenGameMenuItem;
+            hideToolbarMenuItem.Text = Resources.FULW_HideMenuMenuItem;
         }
     }
 }

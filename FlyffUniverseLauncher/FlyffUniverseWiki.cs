@@ -1,9 +1,10 @@
-﻿using Microsoft.Web.WebView2.Core;
+﻿using FlyffUniverseLauncher.Helpers;
+using Microsoft.Web.WebView2.Core;
 using TsadriuUtilities;
 
 namespace FlyffUniverseLauncher
 {
-    public partial class FlyffUniverseWiki : Form
+    public sealed partial class FlyffUniverseWiki : Form
     {
 
         public static string currentPage = string.Empty;
@@ -21,26 +22,23 @@ namespace FlyffUniverseLauncher
         /// <summary>
         /// Sets the window's properties, such as the window name, size and location.
         /// </summary>
-        /// <param name="profileName">The profile user's name.</param>
-        /// <param name="width">Width of the window.</param>
-        /// <param name="height">Height of the window.</param>
         private void SetWindowProperties()
         {
-            StartPosition = Program.launcher.StartPosition;
+            StartPosition = FormStartPosition.CenterParent;
             Size = new Size(1280.ClampValue(1280, Screen.FromControl(this).Bounds.Width), 720.ClampValue(720, Screen.FromControl(this).Bounds.Height));
             Text += $"{Program.CurrentVersion} - Helper";
             Resize += new EventHandler(ResizeWebView);
             Location = Program.launcher.Location;
 
             // Resize the window.
-            ResizeWebView(this, new EventArgs());
+            ResizeWebView(this, EventArgs.Empty);
         }
 
         private async Task SetUpUri()
         {
             settingUpUri = true;
             var name = "FlyffWiki".ToLower();
-            var directory = Path.Combine(FlyffUniverseLauncher.ProgramNetworkStorage, name);
+            var directory = Path.Combine(FlyffUniverseConstants.Directory.ProgramNetworkStorage, name);
             var webViewEnvironment = await CoreWebView2Environment.CreateAsync(string.Empty, directory);
             await webView2.EnsureCoreWebView2Async(webViewEnvironment);
             webView2.CoreWebView2.Settings.AreBrowserAcceleratorKeysEnabled = false;
@@ -51,9 +49,9 @@ namespace FlyffUniverseLauncher
 
         private void FlyffUniverseWiki_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode.ToString() == "Escape" && !settingUpUri)
+            if (e.KeyCode == Keys.Escape && !settingUpUri)
             {
-                Close();
+                webView2_KeyDown(this, new KeyEventArgs(Keys.Escape));
             }
         }
 
